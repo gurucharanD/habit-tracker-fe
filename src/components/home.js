@@ -5,21 +5,31 @@ import SideNav from './layout/sidenav';
 import Banner from './layout/banner';
 import { Outlet } from 'react-router-dom';
 import styles from './home.module.css';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+
+    const toggle = useSelector(state => state.toggle.display);
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    console.log(isLoggedIn)
     return (
-        <div className={styles.App}>
-            <Header></Header>
-            <div className={styles.body}>
-                < SideNav></SideNav >
-                <div>
-                    <Banner></Banner>
-                    {/* <HabitsList></HabitsList> */}
-                    <Outlet></Outlet>
+        <>
+            {/* {isLoggedIn && */}
+            <div className={styles.App}>
+                <Header></Header>
+                <div className={styles.body}>
+                    {toggle && < SideNav></SideNav >}
+                    <div>
+                        <Banner></Banner>
+                        <Outlet></Outlet>
+                    </div>
                 </div>
+                <Footer></Footer>
             </div>
-            <Footer></Footer>
-        </div>
+            {/* } */}
+
+        </>
+
     );
 }
 

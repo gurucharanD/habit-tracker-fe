@@ -4,25 +4,10 @@ import Accordion from 'react-bootstrap/Accordion';
 import styles from './habitsList.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from "react-redux";
 
-const habits = [
-    {
-        id: 1,
-        title: 'core training',
-        currentCount: 2
-    },
-    {
-        id: 2,
-        title: 'meditation',
-        currentCount: 3
-    },
-    {
-        id: 3,
-        title: 'Running',
-        currentCount: 2
-    },
-];
 const HabitsList = () => {
+    const habits = useSelector(state => state.habit.habits);
     return (
         <div className={styles.body}>
             <Accordion>
@@ -32,7 +17,7 @@ const HabitsList = () => {
                             <Accordion.Item eventKey={habit.id}>
                                 <Accordion.Header>{habit.title} &nbsp;&nbsp;&nbsp;&nbsp;{habit.currentCount}<FontAwesomeIcon icon={faFire} /></Accordion.Header>
                                 <Accordion.Body>
-                                    <Habit key={habit.id} title={habit.title} currentCount={habit.currentCount}></Habit>
+                                    <Habit key={habit.id} id={habit.id} title={habit.title} currentCount={habit.currentCount}></Habit>
                                 </Accordion.Body>
                             </Accordion.Item>
                         );

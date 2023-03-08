@@ -1,22 +1,21 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import styles from './login.module.css';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { login } from '../../store/authSlice';
 
 const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(email)
-        console.log(password)
-    }
-
-    const loginUser = (event) => {
-        navigate("/home")
+        dispatch(login());
+        navigate("/home");
     }
 
     return (
@@ -30,7 +29,7 @@ const Login = (props) => {
                     <label htmlFor="password">password</label>
                     <input type="password" placeholder="enter your password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}></input>
                     <br></br>
-                    <Button variant="contained" onClick={loginUser}>Login</Button>
+                    <Button variant="contained" type="submit">Login</Button>
                 </form>
                 <button onClick={() => { props.toggleForm("register") }} className={styles.link_btn}>Don't have an account? Register here.</button>
             </div>
