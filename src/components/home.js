@@ -11,22 +11,22 @@ const Home = () => {
 
     const toggle = useSelector(state => state.toggle.display);
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    console.log(isLoggedIn)
     return (
         <>
-            {/* {isLoggedIn && */}
-            <div className={styles.App}>
-                <Header></Header>
-                <div className={styles.body}>
-                    {toggle && < SideNav></SideNav >}
-                    <div>
-                        <Banner></Banner>
-                        <Outlet></Outlet>
+            {!isLoggedIn && <><p>Login to the app first!</p></>}
+            {isLoggedIn &&
+                <div className={styles.App}>
+                    <Header></Header>
+                    <div className={styles.body}>
+                        {toggle && < SideNav></SideNav >}
+                        <div>
+                            <Banner></Banner>
+                            <Outlet></Outlet>
+                        </div>
                     </div>
+                    <Footer></Footer>
                 </div>
-                <Footer></Footer>
-            </div>
-            {/* } */}
+            }
 
         </>
 

@@ -3,9 +3,9 @@ import styles from './header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
-import store from "../../store/store";
 import { toggle } from '../../store/toggleSlice';
 import { useDispatch } from "react-redux";
+import { logout } from '../../store/authSlice';
 const Header = () => {
 
     const navigate = useNavigate();
@@ -15,7 +15,8 @@ const Header = () => {
         navigate("/home/profile")
     };
     const logOut = () => {
-        navigate("/")
+        dispatch(logout());
+        navigate("/");
     };
     const toogleSideNav = () => {
         dispatch(toggle());
