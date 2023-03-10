@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from './addHabit.module.css';
 import Modal from "../UI/Modal";
 import { Alert } from '@mui/material';
-import { addHabit } from '../../store/habitSlice';
+import { addHabit, saveHabit } from '../../store/habitSlice';
 import { useDispatch } from "react-redux";
 import { Button, TextField } from '@mui/material'
 
@@ -20,11 +20,13 @@ const AddHabit = (props) => {
         }
         // setName(nameRef.current.value);
         setIsNameValid(true);
-        dispatch(addHabit({
+        dispatch(saveHabit({
             title: name,
             currentCount: 0,
-            id: Math.random()
-        }))
+            id:Math.random(),
+            startDate: new Date().toLocaleDateString()
+        }));
+        props.onClose();
     }
     const nameInputChangeHandler = (event) => {
         event.preventDefault();
@@ -35,8 +37,6 @@ const AddHabit = (props) => {
         <Modal onClose={props.onClose}>
             <form onSubmit={handleFormSubmit}>
                 <div className={styles.input}>
-                    {/* <label htmlFor="name">Title:</label> */}
-                    {/* <input type="text" onChange={nameInputChangeHandler}></input> */}
                     <TextField id="standard-basic" label="Enter Title" variant="standard" onChange={nameInputChangeHandler} />
                     {!isNameValid && <Alert severity="error">"Name cannot be empty</Alert>}
                 </div>

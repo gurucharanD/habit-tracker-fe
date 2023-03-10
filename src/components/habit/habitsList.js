@@ -18,53 +18,68 @@ const HabitsList = () => {
 
     // thunk pattern to fetch habits
     useEffect(() => {
+        dispatch(
+            setNotification({
+                open: true,
+                message: "fetching data",
+                type: "warning"
+            })
+        );
         dispatch(getHabits());
+        dispatch(
+            setNotification({
+                open: true,
+                message: "data fetched  from database",
+                type: "success"
+            })
+        );
     }, [dispatch]);
 
     const habits = useSelector(state => state.habit.habits);
+    console.log(habits);
     const notification = useSelector(state => state.ui.notification);
 
     // useeffect pattern to update habits
-    useEffect(() => {
-        if (INITIAL_RENDER) {
-            INITIAL_RENDER = false;
-            console.log("INITIAL_RENDER use effect");
-            return;
-        }
-        console.log("running use effect");
-        const sendRequest = async () => {
-            dispatch(
-                setNotification({
-                    open: true,
-                    message: "fetching data",
-                    type: "warning"
-                })
-            );
-            const res = await fetch('https://habit-tracker-db-13080-default-rtdb.firebaseio.com/habits.json', {
-                method: "PUT",
-                body: JSON.stringify(habits)
-            })
-            const data = await res.json();
-            if (data.error) {
-                dispatch(
-                    setNotification({
-                        open: true,
-                        message: "error fetching data",
-                        type: "error"
-                    })
-                );
-            } else {
-                dispatch(
-                    setNotification({
-                        open: true,
-                        message: "data fetched  from database",
-                        type: "success"
-                    })
-                );
-            }
-        }
-        sendRequest()
-    }, [habits]);
+    // useEffect(() => {
+    //     if (INITIAL_RENDER) {
+    //         INITIAL_RENDER = false;
+    //         console.log("INITIAL_RENDER use effect");
+    //         return;
+    //     }
+    //     console.log("running use effect");
+    //     const sendRequest = async () => {
+    //         dispatch(
+    //             setNotification({
+    //                 open: true,
+    //                 message: "fetching data",
+    //                 type: "warning"
+    //             })
+    //         );
+    //         const res = await fetch('https://habit-tracker-db-13080-default-rtdb.firebaseio.com/habits.json', {
+    //             method: "PUT",
+    //             body: JSON.stringify(habits)
+    //         })
+    //         const data = await res.json();
+    //         if (data.error) {
+    //             dispatch(
+    //                 setNotification({
+    //                     open: true,
+    //                     message: "error fetching data",
+    //                     type: "error"
+    //                 })
+    //             );
+    //         } else {
+    //             dispatch(
+    //                 setNotification({
+    //                     open: true,
+    //                     message: "data fetched  from database",
+    //                     type: "success"
+    //                 })
+    //             );
+    //         }
+    //     }
+    //     sendRequest()
+    // }, [habits]);
 
     return (
         <div className={styles.body}>
