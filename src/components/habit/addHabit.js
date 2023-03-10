@@ -4,7 +4,7 @@ import Modal from "../UI/Modal";
 import { Alert } from '@mui/material';
 import { addHabit } from '../../store/habitSlice';
 import { useDispatch } from "react-redux";
-import { Button } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 
 const AddHabit = (props) => {
     const [name, setName] = useState('');
@@ -35,8 +35,9 @@ const AddHabit = (props) => {
         <Modal onClose={props.onClose}>
             <form onSubmit={handleFormSubmit}>
                 <div className={styles.input}>
-                    <label htmlFor="name">Title:</label>
-                    <input type="text" onChange={nameInputChangeHandler}></input>
+                    {/* <label htmlFor="name">Title:</label> */}
+                    {/* <input type="text" onChange={nameInputChangeHandler}></input> */}
+                    <TextField id="standard-basic" label="Enter Title" variant="standard" onChange={nameInputChangeHandler} />
                     {!isNameValid && <Alert severity="error">"Name cannot be empty</Alert>}
                 </div>
                 <Button variant="contained" type="submit">ADD</Button>

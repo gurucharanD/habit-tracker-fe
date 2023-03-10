@@ -16,11 +16,11 @@ const router = createBrowserRouter([
     index: true
   },
   {
-    path: '/register',
+    path: 'register',
     element: <Register></Register>
   },
   {
-    path: "/home",
+    path: "home",
     element: <Home />,
     children: [
       {
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
         element: <HabitsList />
       },
       {
-        path: '/home/analytics',
+        path: 'analytics',
         element: <Analytics></Analytics>
       },
       {
-        path: '/home/profile',
+        path: 'profile',
         element: <Profile></Profile>
       }
     ]
