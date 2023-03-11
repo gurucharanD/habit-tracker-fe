@@ -11,6 +11,7 @@ import HabitsList from "./components/habit/habitsList";
 import Profile from "./components/user/profile";
 import PageNotFound from "./components/pageNotFound";
 import { useSelector } from "react-redux";
+import NotesList from "./components/Notes/NotesList";
 
 
 function App() {
@@ -41,6 +42,10 @@ function App() {
         {
           path: 'profile',
           element: <Profile></Profile>
+        },
+        {
+          path: 'notes',
+          element: <NotesList></NotesList>
         }
       ]
     },

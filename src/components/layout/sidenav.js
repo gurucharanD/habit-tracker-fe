@@ -7,7 +7,7 @@ const SideNav = () => {
         <div className={styles.layout}>
             <NavLink to="/home" className={styles.navlink}>Home</NavLink>
             <NavLink to='/home/analytics' className={styles.navlink}>Analytics</NavLink>
-            <NavLink to='/home/analytics' className={styles.navlink}>Notes</NavLink>
+            <NavLink to='/home/notes' className={styles.navlink}>Notes</NavLink>
         </div>
     );
 }

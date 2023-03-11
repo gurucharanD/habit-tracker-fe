@@ -7,13 +7,13 @@ import { Outlet } from 'react-router-dom';
 import styles from './home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import AddHabit from './habit/addHabit';
-import { toggle } from '../store/addHabitSlice';
+import { toggle } from '../store/uiSlice';
 
 const Home = () => {
 
     const sideNavToggle = useSelector(state => state.toggle.display);
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const showAddHabitComp = useSelector(state => state.addHabit.display);
+    const showAddHabitComp = useSelector(state => state.ui.display);
     const dispatch = useDispatch();
     const hideAddHabitComp = () => {
         dispatch(toggle());
