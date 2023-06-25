@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from './addHabit.module.css';
 import Modal from "../UI/Modal";
 import { Alert } from '@mui/material';
-import { addHabit, saveHabit } from '../../store/habitSlice';
+import { saveHabit } from '../../store/habitSlice';
 import { useDispatch } from "react-redux";
 import { Button, TextField } from '@mui/material'
 

@@ -14,7 +14,7 @@ const habitSlice = createSlice({
         },
         deletHabit(state, action) {
             const id = action.payload;
-            state.habits = state.habits.filter(habit => habit.id != id);
+            state.habits = state.habits.filter(habit => habit.id !== id);
         },
         checkIn(state, action) {
             const id = action.payload;
