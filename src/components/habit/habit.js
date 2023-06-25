@@ -15,7 +15,7 @@ const Habit = (props) => {
     const dispatch = useDispatch();
 
     const handleCheckin = (id) => {
-        dispatch(checkIn("NQBl2StG7zXp2-OU735",2));
+        dispatch(checkIn(id));
     };
 
     const handleDelete = (id) => {

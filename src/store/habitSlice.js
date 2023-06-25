@@ -33,7 +33,7 @@ const habitSlice = createSlice({
 
 
 
-export const { addHabit, deletHabit, replace } = habitSlice.actions;
+export const { addHabit, deletHabit, replace, checkIn } = habitSlice.actions;
 export const getHabits = () => {
     return async (dispatch) => {
         const fetchHandler = async () => {
@@ -73,35 +73,35 @@ export const saveHabit = (habit) => {
     }
 };
 
-export const checkIn = (id, count) => {
-    return (dispatch) => {
-        const sendRequest = async () => {
-            const res = await fetch(`https://habit-tracker-db-13080-default-rtdb.firebaseio.com/habits.json/habits/${id}`, {
-                method: "PUT",
-                body: JSON.stringify({
-                    fields: {
-                        currentCount: {
-                            stringValue: count,
-                        },
-                    },
-                })
-            })
-            const data = await res.json();
-            if (data.error) {
-                dispatch(
-                    setNotification({
-                        open: true,
-                        message: "error fetching data",
-                        type: "error"
-                    })
-                );
-            } else {
-                dispatch(getHabits());
-            }
-        }
-        sendRequest()
-    }
-}
+// export const checkIn = (id, count) => {
+//     return (dispatch) => {
+//         const sendRequest = async () => {
+//             const res = await fetch(`https://habit-tracker-db-13080-default-rtdb.firebaseio.com/habits.json/habits/${id}`, {
+//                 method: "PUT",
+//                 body: JSON.stringify({
+//                     fields: {
+//                         currentCount: {
+//                             stringValue: count,
+//                         },
+//                     },
+//                 })
+//             })
+//             const data = await res.json();
+//             if (data.error) {
+//                 dispatch(
+//                     setNotification({
+//                         open: true,
+//                         message: "error fetching data",
+//                         type: "error"
+//                     })
+//                 );
+//             } else {
+//                 dispatch(getHabits());
+//             }
+//         }
+//         sendRequest()
+//     }
+// }
 export default habitSlice;
 
 
